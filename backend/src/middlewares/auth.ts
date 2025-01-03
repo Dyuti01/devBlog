@@ -1,12 +1,18 @@
 import { HonoRequest } from "hono";
-import * as HonoCookie from "hono/cookie";
+import {
+  getCookie,
+  getSignedCookie,
+  setCookie,
+  setSignedCookie,
+  deleteCookie,
+} from 'hono/cookie'
 import { decode, sign, verify } from "hono/jwt";
 import { prismaClient } from "../utils/prismaClient";
 
 export const userauth = async (c: any, next: any) => {
   try {
     const prisma = prismaClient(c);
-    const cookie:any = await HonoCookie.getSignedCookie(c, c.env.JWT_SECRET);
+    const cookie:any = await getSignedCookie(c, c.env.JWT_SECRET);
     const { token } = cookie;
     // if (!token) {
     //   throw new Error("Invalid token!");

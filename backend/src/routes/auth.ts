@@ -4,10 +4,17 @@ import { validateSignUpData } from "../utils/validation";
 import bcrypt from "bcrypt";
 import * as crypto from "node:crypto";
 import { HTTPException } from "hono/http-exception";
-import * as HonoCookie from 'hono/cookie';
+
 import { decode, sign, verify } from 'hono/jwt'
 import z from 'zod'
 import { signUpInput, signInInput } from "../../../common/src/index";
+import {
+  getCookie,
+  getSignedCookie,
+  setCookie,
+  setSignedCookie,
+  deleteCookie
+} from 'hono/cookie'
 
 export const authRouter = new Hono<{
   Bindings: {
@@ -20,7 +27,7 @@ authRouter.post("/signup", async (c) => {
   try {
     const prisma = prismaClient(c);
     const body = await c.req.json();
-
+    
     const {success, error} = signUpInput.safeParse(body);
     if (!success){
       throw new Error(error.message)
@@ -83,9 +90,10 @@ authRouter.post("/signin", async (c) => {
     if (hashedPassword === userProvidedPassword) {
 
       const token = await sign({id:user.id}, c.env.JWT_SECRET);
-      await HonoCookie.setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600});  // maxAge is in 3600
+      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600});  // maxAge is in 3600
       return c.json({
         message: `Welcome back ${user.firstName}. Logged in succesfully.`,
+        user
       });
     }
     
