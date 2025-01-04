@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dyuti_01/blog_common": "^1.0.0",
+    "@dyuti_01/blog_common": "^1.0.2",
     "@types/axios": "^0.9.36",
     "@types/react-router": "^5.1.20",
     "axios": "^1.7.9",

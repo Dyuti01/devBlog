@@ -1,6 +1,5 @@
 import React from 'react'
 import Quote from '../components/Quote'
-import Auth from '../components/Auth'
 import SigninForm from '../components/SigninForm'
 import { Link } from 'react-router'
 

@@ -33,22 +33,22 @@ const SignupForm = () => {
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
       
       <LabelledInput title='first name' type='text' placeholder='' onChange={(e)=>{
-        setPostSignupInputs((c:SignInInputParams)=>({
+        setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, firstName:e.target.value
         }))
       }} />
       <LabelledInput title='last name' type='text' placeholder='' onChange={(e)=>{
-        setPostSignupInputs((c:SignInInputParams)=>({
+        setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, lastName:e.target.value
         }))
       }} />
       <LabelledInput title='email' type='email' placeholder='abc@example.com' onChange={(e)=>{
-        setPostSignupInputs((c:SignInInputParams)=>({
+        setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, email:e.target.value
         }))
       }} />
       <LabelledInput title='password' type='password' onChange={(e)=>{
-        setPostSignupInputs((c:SignInInputParams)=>({
+        setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, password:e.target.value
         }))
       }} />
