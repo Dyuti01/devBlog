@@ -1,40 +1,51 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { SignInInputParams, SignUpInputParams } from '../../../common/src/index'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
+import UserContext from '../utils/UserContext'
 
 const SigninForm = () => {
   const [postSigninInputs, setPostSigninInputs] = useState<SignInInputParams>({
-    userEmail:"srk@gmail.com",
-    password:"Hello@12345"
+    userEmail:"",
+    password:""
   })
 
   const navigate = useNavigate()
 
+  const {isLoggedInUser, setIsLoggedInUser, authorName, setAuthorName}:any = useContext(UserContext);
+
   async function sendReq(){
     try{
-      const response = await axios.post(`${BACKEND_URL}/api/v1/auth/signin`, postSigninInputs, {withCredentials:true})
-      console.log(response)
-      navigate('/blogs') 
+      const response:any = await axios.post(`${BACKEND_URL}/api/v1/auth/signin`, postSigninInputs, {withCredentials:true})
+      const {message}:any = response.data;
+      if (message!=="Invalid credentials"){
+        setIsLoggedInUser(true)
+        const author = response.data.safeData.firstName+" "+response.data.safeData.lastName;
+        localStorage.setItem("authorName", author);
+        setAuthorName(author);
+        
+      // console.log({response, isLoggedIn, message})
+      }
+      navigate('/allBlogs') 
     }
     catch(err){
-
+      alert("Invalid credentials!")
     }
   }
   return (
     <div className='flex flex-col justify-center items-center justify-items-center w-full sm:w-1/2 min-h-screen gap-[50px]'>
       <div className='flex flex-col w-[70%] items-center gap-[10px]'>
-        <span className='text-5xl font-bold'>Welcome back!</span>
-        <span className='text-sm text-slate-500'>Don't have account? <Link to='/signup' className='underline'>Create account</Link></span>
+        <span className='text-5xl font-bold text-center'>Welcome back!</span>
+        <span className='text-sm text-slate-500 text-center'>Don't have account? <Link to='/signup' className='underline'>Create account</Link></span>
       </div>
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
-      <LabelledInput title='userEmail' type='email' placeholder='abc@example.com' value={postSigninInputs.userEmail} onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='userEmail' type='email' placeholder='abc@example.com' value={postSigninInputs.userEmail} onChange={(e)=>{
         setPostSigninInputs(c=>({
           ...c, userEmail:e.target.value
         }))
       }} />
-      <LabelledInput title='password' type='password' value={postSigninInputs.password} onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='password' type='password' value={postSigninInputs.password} onChange={(e)=>{
         setPostSigninInputs(c=>({
           ...c, password:e.target.value
         }))
@@ -53,14 +64,18 @@ interface LabelledInput{
   value:any,
   placeholder?: string,
   onChange: (e:ChangeEvent<HTMLInputElement>)=>void
+  sendReq: ()=>void
 }
 
-const LabelledInput = ({title, type, placeholder, value, onChange}:LabelledInput)=>{
+const LabelledInput = ({title, type, placeholder, value, onChange, sendReq}:LabelledInput)=>{
   return (
     <>
       <div className='flex flex-col w-full'>
       <label htmlFor={title} className='text-black font-medium'>{title[0].toUpperCase() + title.slice(1)}</label>
-      <input name={title} type={type || "text"} placeholder={placeholder} className='h-[40px] bg-white border-[1px] border-slate-300 px-2 py-1 rounded-lg' onChange={onChange} value={value} required/>
+      <input name={title} type={type || "text"} placeholder={placeholder} className='h-[40px] bg-white border-[1px] border-slate-300 px-2 py-1 rounded-lg' onChange={onChange} value={value} onKeyDown={(e) => {
+        if (e.key === "Enter")
+            sendReq();
+        }} required/>
       </div>
     </>
   )

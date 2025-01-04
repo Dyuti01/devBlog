@@ -28,7 +28,7 @@ const BlogCard = ({blogId, authorName, title, content, publishedDate}: BlogCardP
         </div>
         <div className="body">
           <div className="about text-2xl font-bold">{title}</div>
-          <div className="contect text-slate-500">{content.slice(0, 200) + "..."}</div>
+          <div className="content text-slate-500">{content.slice(0, 200) + "..."}</div>
         </div>
       </Link>
 

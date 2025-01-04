@@ -1,5 +1,7 @@
 import { Hono } from "hono";
 import { prismaClient } from "../utils/prismaClient";
+import { PrismaClient } from "@prisma/client/edge";
+import { withAccelerate } from "@prisma/extension-accelerate";
 import { validateSignUpData } from "../utils/validation";
 import bcrypt from "bcrypt";
 import * as crypto from "node:crypto";
@@ -15,6 +17,7 @@ import {
   setSignedCookie,
   deleteCookie
 } from 'hono/cookie'
+
 
 export const authRouter = new Hono<{
   Bindings: {
@@ -62,7 +65,10 @@ authRouter.post("/signup", async (c) => {
 
 authRouter.post("/signin", async (c) => {
   try {
-    const prisma = prismaClient(c);
+    // const prisma = prismaClient(c);
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
     const body = await c.req.json();
     const {success, error} = signInInput.safeParse(body);
     if (!success){
@@ -72,13 +78,13 @@ authRouter.post("/signin", async (c) => {
     const user = await prisma.user.findUnique({
       where: {
         email: userEmail,
-      },
+      }
     });
 
     if (!user) {
       throw new Error("Invalid credentials. No user present.",{cause:"No user present"});
     }
-
+    const safeData = {id:user.id, firstName:user.firstName, lastName:user.lastName}
     const salt = user.salt;
     const hashedPassword = user.password;
 
@@ -90,14 +96,25 @@ authRouter.post("/signin", async (c) => {
     if (hashedPassword === userProvidedPassword) {
 
       const token = await sign({id:user.id}, c.env.JWT_SECRET);
-      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600});  // maxAge is in 3600
+      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600});  // maxAge is in 3600s i.e., 1h
       return c.json({
         message: `Welcome back ${user.firstName}. Logged in succesfully.`,
-        user
+        safeData
       });
     }
-    
-    return c.json({ message: "Invalid credentials" });
+    c.status(401);
+    return c.render("Invalid credentials");
+  } catch (err: any) {
+    const message = err.message;
+    c.status(400);
+    return c.json({error: message});
+  }
+});
+
+authRouter.get("/logout", async (c) => {
+  try {
+    deleteCookie(c, "token", {maxAge:3600});
+    return c.json({ message: "Successfully Logout" });
   } catch (err: any) {
     const message = err.message;
     c.status(400);

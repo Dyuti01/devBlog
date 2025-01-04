@@ -46,7 +46,7 @@ export const userauth = async (c: any, next: any) => {
     await next();
   } catch (err: any) {
     const message = err.message;
-    c.status(400);
+    c.status(401);
     return c.json({ error: "Invalid credentials!", message });
   }
 };

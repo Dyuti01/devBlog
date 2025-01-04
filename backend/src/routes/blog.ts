@@ -12,7 +12,7 @@ export const blogRouter = new Hono<{
   };
 }>();
 
-blogRouter.get("/", userauth, async (c) => {
+blogRouter.get("/myBlogs", userauth, async (c) => {
   try {
     // const prisma = prismaClient(c);
     const prisma = new PrismaClient({
@@ -49,7 +49,7 @@ blogRouter.get("/", userauth, async (c) => {
     return c.text("error: " + message);
   }
 });
-blogRouter.get("/:blogId", userauth, async (c) => {
+blogRouter.get("/blogs/:blogId", async (c) => {
   try {
     // const prisma = prismaClient(c);
     const prisma = new PrismaClient({
@@ -58,7 +58,7 @@ blogRouter.get("/:blogId", userauth, async (c) => {
 
     //@ts-ignore
     // const { id, user } = c.info;
-    const { id, user } = c.get("info");
+    // const { id, user } = c.get("info");
     const blog = await prisma.post.findUnique({
       where: {
         id: c.req.param().blogId,
@@ -86,6 +86,7 @@ blogRouter.get("/:blogId", userauth, async (c) => {
     return c.text("error: " + message);
   }
 });
+
 blogRouter.get("/bulk", async (c) => {
   try {
     // const prisma = prismaClient(c);
@@ -98,6 +99,9 @@ blogRouter.get("/bulk", async (c) => {
     // const { id, user } = c.get("info");
 
     const blogs = await prisma.post.findMany({
+      where:{
+      
+      },
       select: {
         id:true,
         content: true,
@@ -122,7 +126,7 @@ blogRouter.get("/bulk", async (c) => {
   }
 });
 
-blogRouter.post("/", userauth, async (c) => {
+blogRouter.post("/createPost", userauth, async (c) => {
   try {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
@@ -153,7 +157,6 @@ blogRouter.post("/", userauth, async (c) => {
     return c.json({ message: "New post created." });
   } catch (err: any) {
     const message = err.message;
-    console.log(err);
     c.status(400);
     return c.text("error: " + message);
   }

@@ -11,8 +11,8 @@ export const signInInput = z.object({
   password: z.string()
 })
 export const postInput = z.object({
-  content: z.string().max(1000),
-  title: z.string().max(20)
+  content: z.string(),
+  title: z.string().max(500)
 })
 export const updatePostInput = z.object({
   content: z.string().max(2000).optional(),

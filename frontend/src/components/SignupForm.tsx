@@ -20,24 +20,24 @@ const SignupForm = () => {
       navigate('/signin')
     }
     catch(err){
-
+      alert("Enter valid inputs.\n" + err)
     }
   }
 
   return (
     <div className='flex flex-col justify-center items-center justify-items-center w-full sm:w-1/2 min-h-screen gap-[50px]'>
-      <div className='flex flex-col w-[70%] items-center gap-[10px]'>
-        <span className='text-5xl font-bold'>Create an account</span>
-        <span className='text-sm text-slate-500'>Already have an account? <Link to="/signin" className='underline'>Login</Link></span>
+      <div className='flex flex-col w-[70%] justify-center items-center gap-[10px]'>
+        <span className='text-5xl font-bold text-center'>Create an account</span>
+        <span className='text-sm text-slate-500 text-center'>Already have an account? <Link to="/signin" className='underline'>Login</Link></span>
       </div>
-    <form className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
+    <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
       
       <LabelledInput title='first name' type='text' placeholder='' onChange={(e)=>{
         setPostSignupInputs(c=>({
           ...c, firstName:e.target.value
         }))
       }} />
-      <LabelledInput title='last name' type='email' placeholder='' onChange={(e)=>{
+      <LabelledInput title='last name' type='text' placeholder='' onChange={(e)=>{
         setPostSignupInputs(c=>({
           ...c, lastName:e.target.value
         }))
@@ -53,9 +53,9 @@ const SignupForm = () => {
         }))
       }} />
             <div className=' w-full'>
-        <button type='submit' className='border-[2px] bg-black text-white w-full py-2 rounded-lg' onSubmit={sendReq}>SignUp</button>
+        <button className='border-[2px] bg-black text-white w-full py-2 rounded-lg' onClick={sendReq}>SignUp</button>
       </div>
-    </form>
+    </div>
     </div>
   )
 }
