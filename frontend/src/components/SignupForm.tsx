@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { SignInInputParams, SignUpInputParams } from '../../../common/src/index'
+import { SignInInputParams, SignUpInputParams } from '@dyuti_01/blog_common'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
 
@@ -33,22 +33,22 @@ const SignupForm = () => {
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
       
       <LabelledInput title='first name' type='text' placeholder='' onChange={(e)=>{
-        setPostSignupInputs(c=>({
+        setPostSignupInputs((c:SignInInputParams)=>({
           ...c, firstName:e.target.value
         }))
       }} />
       <LabelledInput title='last name' type='text' placeholder='' onChange={(e)=>{
-        setPostSignupInputs(c=>({
+        setPostSignupInputs((c:SignInInputParams)=>({
           ...c, lastName:e.target.value
         }))
       }} />
       <LabelledInput title='email' type='email' placeholder='abc@example.com' onChange={(e)=>{
-        setPostSignupInputs(c=>({
+        setPostSignupInputs((c:SignInInputParams)=>({
           ...c, email:e.target.value
         }))
       }} />
       <LabelledInput title='password' type='password' onChange={(e)=>{
-        setPostSignupInputs(c=>({
+        setPostSignupInputs((c:SignInInputParams)=>({
           ...c, password:e.target.value
         }))
       }} />

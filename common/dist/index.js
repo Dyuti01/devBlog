@@ -12,15 +12,15 @@ exports.signUpInput = zod_1.default.object({
     lastName: zod_1.default.string().min(3)
 });
 exports.signInInput = zod_1.default.object({
-    email: zod_1.default.string().email({ message: "Invalid email" }),
+    userEmail: zod_1.default.string().email({ message: "Invalid email" }),
     password: zod_1.default.string()
 });
 exports.postInput = zod_1.default.object({
-    content: zod_1.default.string().max(300),
-    title: zod_1.default.string().max(20)
+    content: zod_1.default.string(),
+    title: zod_1.default.string().max(500)
 });
 exports.updatePostInput = zod_1.default.object({
-    content: zod_1.default.string().max(300).optional(),
+    content: zod_1.default.string().max(2000).optional(),
     title: zod_1.default.string().max(20).optional(),
-    published: zod_1.default.boolean()
+    published: zod_1.default.boolean().optional()
 });

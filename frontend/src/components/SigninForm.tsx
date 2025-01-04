@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { SignInInputParams, SignUpInputParams } from '../../../common/src/index'
+import { SignInInputParams, SignUpInputParams } from '@dyuti_01/blog_common'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
 import UserContext from '../utils/UserContext'
@@ -41,12 +41,12 @@ const SigninForm = () => {
       </div>
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
       <LabelledInput sendReq={sendReq} title='userEmail' type='email' placeholder='abc@example.com' value={postSigninInputs.userEmail} onChange={(e)=>{
-        setPostSigninInputs(c=>({
+        setPostSigninInputs((c:SignInInputParams)=>({
           ...c, userEmail:e.target.value
         }))
       }} />
       <LabelledInput sendReq={sendReq} title='password' type='password' value={postSigninInputs.password} onChange={(e)=>{
-        setPostSigninInputs(c=>({
+        setPostSigninInputs((c:SignInInputParams)=>({
           ...c, password:e.target.value
         }))
       }} />

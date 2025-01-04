@@ -16,14 +16,14 @@ export declare const signUpInput: z.ZodObject<{
     firstName?: string | undefined;
 }>;
 export declare const signInInput: z.ZodObject<{
-    email: z.ZodString;
+    userEmail: z.ZodString;
     password: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     password: string;
+    userEmail: string;
 }, {
-    email: string;
     password: string;
+    userEmail: string;
 }>;
 export declare const postInput: z.ZodObject<{
     content: z.ZodString;
@@ -38,15 +38,15 @@ export declare const postInput: z.ZodObject<{
 export declare const updatePostInput: z.ZodObject<{
     content: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodString>;
-    published: z.ZodBoolean;
+    published: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    published: boolean;
     content?: string | undefined;
     title?: string | undefined;
+    published?: boolean | undefined;
 }, {
-    published: boolean;
     content?: string | undefined;
     title?: string | undefined;
+    published?: boolean | undefined;
 }>;
 export type SignUpInputParams = z.infer<typeof signUpInput>;
 export type SignInInputParams = z.infer<typeof signInInput>;
