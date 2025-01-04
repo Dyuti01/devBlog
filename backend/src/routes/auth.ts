@@ -97,14 +97,14 @@ authRouter.post("/signin", async (c) => {
 
       const token = await sign({id:user.id}, c.env.JWT_SECRET);
     
-      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600*1000});  // maxAge is in 3600s i.e., 1h
+      await setSignedCookie(c, "token", token, c.env.JWT_SECRET);  // maxAge is in 3600s i.e., 1h
       return c.json({
         message: `Welcome back ${user.firstName}. Logged in succesfully.`,
         safeData
       });
     }
     c.status(401);
-    return c.render("Invalid credentials");
+    return c.json({message:"Invalid credentials"});
   } catch (err: any) {
     const message = err.message;
     c.status(400);
