@@ -44,7 +44,7 @@ const Appbar = () => {
         </div>
       </div>}
       {!isLoggedInUser && <div className='flex items-center justify-center gap-6 relative'>
-        <Link to="/signup" className='hover:scale-95 hover:text-green-700 transition-all ease-in-out h-[70px] flex justify-center items-center font-medium'>
+        <Link to="/" className='hover:scale-95 hover:text-green-700 transition-all ease-in-out h-[70px] flex justify-center items-center font-medium'>
           Create account
         </Link>
         <Link to="/signin" className='hover:scale-95 hover:text-green-700 transition-all ease-in-out h-[70px] flex justify-center items-center font-medium'>

@@ -96,7 +96,8 @@ authRouter.post("/signin", async (c) => {
     if (hashedPassword === userProvidedPassword) {
 
       const token = await sign({id:user.id}, c.env.JWT_SECRET);
-      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600});  // maxAge is in 3600s i.e., 1h
+    
+      await setSignedCookie(c, "token", token, c.env.JWT_SECRET, {maxAge:3600*1000});  // maxAge is in 3600s i.e., 1h
       return c.json({
         message: `Welcome back ${user.firstName}. Logged in succesfully.`,
         safeData
@@ -113,7 +114,7 @@ authRouter.post("/signin", async (c) => {
 
 authRouter.get("/logout", async (c) => {
   try {
-    deleteCookie(c, "token", {maxAge:3600});
+    deleteCookie(c, "token");
     return c.json({ message: "Successfully Logout" });
   } catch (err: any) {
     const message = err.message;

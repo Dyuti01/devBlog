@@ -13,22 +13,12 @@ function App() {
 const [isLoggedInUser, setIsLoggedInUser] = useState(false);
 const [authorName, setAuthorName] = useState("")
 
-useEffect(()=>{
-  const token = document.cookie
-  if(token){
-    const author = localStorage.getItem("authorName")||""
-    setAuthorName(author);
-    setIsLoggedInUser(true);
-  }
-}, [])
-
   return (
     <>
 <UserContext.Provider value={{isLoggedInUser:isLoggedInUser, setIsLoggedInUser, authorName, setAuthorName}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signup />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:blogId" element={<Blog />} />
           <Route path="/myBlogs" element={<MyBlogs />} />
