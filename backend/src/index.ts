@@ -8,7 +8,7 @@ import { cors } from "hono/cors";
 export const app = new Hono()
 
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:"https://dev-blog-sable.vercel.app",
   credentials:true
 }))
 
