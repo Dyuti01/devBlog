@@ -26,14 +26,23 @@ export interface BlogParam {
 const MyBlogs = () => {
   
   const navigate = useNavigate();
-  const {isLoggedInUser, setIsLoggedInUser}:any = useContext(UserContext);
+  const {isLoggedInUser, setIsLoggedInUser, setAuthorName}:any = useContext(UserContext);
+    useEffect(()=>{
+      // if(!isLoggedInUser){
+      // navigate("/unauthorized")
+      // }
+      axios.get(`${BACKEND_URL}/api/v1/blog/check`, {withCredentials:true}).then((res)=>{
+        setIsLoggedInUser(true)
+        setAuthorName(localStorage.getItem("authorName")||"")
+       }).catch((error)=>{
+         setIsLoggedInUser(false);
+         navigate("/unauthorized")
+       })
+    }, [])
+
 
     const {blogs, loading} = UseBlogs(isLoggedInUser);
-    useEffect(()=>{
-     if(!isLoggedInUser){
-      navigate("/unauthorized")
-     }
-    }, [])
+
   
 
   return (
