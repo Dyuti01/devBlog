@@ -171,7 +171,6 @@ blogRouter.put("/:id", userauth, async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
-    // console.log(c.info);
 
     // @ts-ignore
     // const {updateData, id} = c.info;

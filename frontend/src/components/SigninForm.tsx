@@ -25,7 +25,6 @@ const SigninForm = () => {
         localStorage.setItem("authorName", author);
         setAuthorName(author);
         
-      // console.log({response, isLoggedIn, message})
       }
       navigate('/allBlogs') 
     }

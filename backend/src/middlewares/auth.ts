@@ -63,7 +63,6 @@ export const userauth = async (c: any, next: any) => {
 // const hexString = [...new Uint8Array(myDigest)]
 // .map(b => b.toString(16).padStart(3, '0'))
 // .join('')
-// console.log(hexString);
 
 // const myText1 = new TextEncoder().encode('Hello world!');
 
@@ -76,16 +75,16 @@ export const userauth = async (c: any, next: any) => {
 //   const hexString1 = [...new Uint8Array(myDigest1)]
 //   .map(b => b.toString(16).padStart(3, '0'))
 //   .join('')
-//   console.log(hexString1);
+
 
 //   if (hexString===hexString1){
-//     console.log("Same")
+
 //   }
 
 
 // Using headers
   // const header:any = c.req.header("Authorization")?.split(' ')[1]
-  // console.log(header)
+
   // const decoded = await verify(header.toString(), c.env.JWT_SECRET);
-  // console.log(decoded)
+
   // next();
