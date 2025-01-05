@@ -42,8 +42,19 @@ const MyBlogs = () => {
 
 
     const {blogs, loading} = UseBlogs(isLoggedInUser);
+    if (blogs.length===0){
+      return (
+        <>
+      <Appbar />
+      {loading && <Shimmer />}
+        <div className='min-h-screen w-full flex flex-col items-center mt-[140px]'>
+          <span className='text-3xl font-semibold'>You have no posts.</span>
+          <Link to={"/publish"} className='underline'>Create post.</Link>
+        </div>
+        </>
 
-  
+      )
+    }
 
   return (
     <>
