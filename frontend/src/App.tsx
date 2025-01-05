@@ -16,7 +16,7 @@ const [isLoggedInUser, setIsLoggedInUser] = useState(false);
 const [authorName, setAuthorName] = useState("")
 
 useEffect(()=>{
-  axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
+  axios.get(`${BACKEND_URL}/api/v1/check`, {withCredentials:true}).then((res)=>{
     setIsLoggedInUser(true)
     setAuthorName(localStorage.getItem("authorName")||"")
    }).catch((error)=>{

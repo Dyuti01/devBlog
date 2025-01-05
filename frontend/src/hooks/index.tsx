@@ -12,7 +12,8 @@ export const UseBlogs = ({setIsLoggedInUser}:any) => {
       setBlogs(res.data);
       setLoading(false);
     }).catch((error)=>{
-      return "Error";
+      setIsLoggedInUser(false);
+      return error.message;
     })
   }, [])
 

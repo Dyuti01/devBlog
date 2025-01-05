@@ -12,6 +12,8 @@ export const blogRouter = new Hono<{
   };
 }>();
 
+blogRouter.post("/check", userauth);
+
 blogRouter.get("/myBlogs", userauth, async (c) => {
   try {
     // const prisma = prismaClient(c);

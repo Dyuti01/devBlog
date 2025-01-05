@@ -28,17 +28,11 @@ const MyBlogs = () => {
   const navigate = useNavigate();
   const {isLoggedInUser, setIsLoggedInUser}:any = useContext(UserContext);
 
-    const [loading, setLoading] = useState(true);
-    const [blogs, setBlogs]:any = useState([]);
+    const {blogs, loading} = UseBlogs(isLoggedInUser);
     useEffect(()=>{
-     axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
-        setBlogs(res.data);
-        setLoading(false);
-      }).catch((error)=>{
-        setIsLoggedInUser(false);
-        navigate("/unauthorized")
-        return "Error";
-      })
+     if(!isLoggedInUser){
+      navigate("/unauthorized")
+     }
     }, [])
   
 
