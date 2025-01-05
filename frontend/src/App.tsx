@@ -19,6 +19,7 @@ const [authorName, setAuthorName] = useState("")
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:blogId" element={<Blog />} />
           <Route path="/myBlogs" element={<MyBlogs />} />
