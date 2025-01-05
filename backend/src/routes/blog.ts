@@ -12,7 +12,7 @@ export const blogRouter = new Hono<{
   };
 }>();
 
-blogRouter.post("/check", userauth);
+blogRouter.get("/check", userauth);
 
 blogRouter.get("/myBlogs", userauth, async (c) => {
   try {
