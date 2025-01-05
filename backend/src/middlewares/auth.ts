@@ -12,7 +12,7 @@ import { prismaClient } from "../utils/prismaClient";
 export const userauth = async (c: any, next: any) => {
   try {
     const prisma = prismaClient(c);
-    const cookie:any = await getSignedCookie(c, c.env.JWT_SECRET);
+    const cookie:any = getCookie(c);
     const { token } = cookie;
     // if (!token) {
     //   throw new Error("Invalid token!");
