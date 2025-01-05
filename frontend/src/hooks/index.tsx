@@ -8,15 +8,12 @@ export const UseBlogs = ({setIsLoggedInUser}:any) => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs]:any = useState([]);
   useEffect(()=>{
-    try{
-          axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
+   axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
       setBlogs(res.data);
       setLoading(false);
+    }).catch((error)=>{
+      return "Error";
     })
-    }catch(err){
-      setIsLoggedInUser(false)
-      setLoading(false)
-    }
   }, [])
 
   return {loading, blogs}
@@ -25,16 +22,13 @@ export const UseBlog = ({blogId}:{blogId:string}) => {
   const [loading, setLoading] = useState(true);
   const [blog, setBlog] = useState<BlogParam>();
   useEffect(()=>{
-    try{
           axios.get(`${BACKEND_URL}/api/v1/blog/blogs/${blogId}`, {withCredentials:true}).then((res)=>{
       // @ts-ignore
       setBlog(res.data.blog);
       setLoading(false);
+    }).catch((error)=>{
+      return error.message;
     })
-    }
-    catch(err){
-      alert("Something went wrong!")
-    }
 
   }, [blogId])
 

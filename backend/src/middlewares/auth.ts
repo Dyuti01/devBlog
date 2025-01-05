@@ -13,6 +13,7 @@ export const userauth = async (c: any, next: any) => {
   try {
     const prisma = prismaClient(c);
     const cookie:any = getCookie(c);
+
     const { token } = cookie;
     // if (!token) {
     //   throw new Error("Invalid token!");

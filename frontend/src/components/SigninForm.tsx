@@ -7,8 +7,8 @@ import UserContext from '../utils/UserContext'
 
 const SigninForm = () => {
   const [postSigninInputs, setPostSigninInputs] = useState<SignInInputParams>({
-    userEmail:"",
-    password:""
+    userEmail:"srk@gmail.com",
+    password:"Hello@12345"
   })
 
   const navigate = useNavigate()

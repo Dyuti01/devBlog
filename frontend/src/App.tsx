@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import Blog from './pages/Blog'
@@ -8,10 +8,22 @@ import Unauthorized from './pages/Unauthorized'
 import UserContext from './utils/UserContext'
 import { useEffect, useState } from 'react'
 import MyBlogs from './pages/MyBlogs'
+import { BACKEND_URL } from './config'
+import axios from 'axios'
 
 function App() {
 const [isLoggedInUser, setIsLoggedInUser] = useState(false);
 const [authorName, setAuthorName] = useState("")
+
+useEffect(()=>{
+  axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
+    setIsLoggedInUser(true)
+    setAuthorName(localStorage.getItem("authorName")||"")
+   }).catch((error)=>{
+     setIsLoggedInUser(false);
+   })
+ }, [])
+
 
   return (
     <>

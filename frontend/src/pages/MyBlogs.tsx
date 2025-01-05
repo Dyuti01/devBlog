@@ -1,10 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BlogCard from '../components/BlogCard'
 import Appbar from '../components/Appbar'
 import { UseBlogs } from '../hooks'
 import { Link, useNavigate } from 'react-router';
 import Shimmer from './Shimmer';
 import UserContext from '../utils/UserContext';
+import Cookies from 'js-cookie'
+import { BACKEND_URL } from '../config';
+import axios from 'axios';
 
 export interface BlogParam {
   id: string;
@@ -21,15 +24,23 @@ export interface BlogParam {
 }
 
 const MyBlogs = () => {
+  
   const navigate = useNavigate();
   const {isLoggedInUser, setIsLoggedInUser}:any = useContext(UserContext);
-  const { blogs, loading } = UseBlogs(setIsLoggedInUser);
 
-  useEffect(()=>{
-    if (!document.cookie){
-    navigate("/unauthorized")
-  }
-  },[])
+    const [loading, setLoading] = useState(true);
+    const [blogs, setBlogs]:any = useState([]);
+    useEffect(()=>{
+     axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs`, {withCredentials:true}).then((res)=>{
+        setBlogs(res.data);
+        setLoading(false);
+      }).catch((error)=>{
+        setIsLoggedInUser(false);
+        navigate("/unauthorized")
+        return "Error";
+      })
+    }, [])
+  
 
   return (
     <>
