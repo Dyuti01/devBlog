@@ -32,22 +32,22 @@ const SignupForm = () => {
       </div>
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>
       
-      <LabelledInput title='first name' type='text' placeholder='' onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='first name' type='text' placeholder='' onChange={(e)=>{
         setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, firstName:e.target.value
         }))
       }} />
-      <LabelledInput title='last name' type='text' placeholder='' onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='last name' type='text' placeholder='' onChange={(e)=>{
         setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, lastName:e.target.value
         }))
       }} />
-      <LabelledInput title='email' type='email' placeholder='abc@example.com' onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='email' type='email' placeholder='abc@example.com' onChange={(e)=>{
         setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, email:e.target.value
         }))
       }} />
-      <LabelledInput title='password' type='password' onChange={(e)=>{
+      <LabelledInput sendReq={sendReq} title='password' type='password' onChange={(e)=>{
         setPostSignupInputs((c:SignUpInputParams)=>({
           ...c, password:e.target.value
         }))
@@ -64,15 +64,19 @@ interface LabelledInput{
   title:string,
   type:string,
   placeholder?: string,
-  onChange: (e:ChangeEvent<HTMLInputElement>)=>void
+  onChange: (e:ChangeEvent<HTMLInputElement>)=>void,
+  sendReq:()=>void
 }
 
-const LabelledInput = ({title, type, placeholder, onChange}:LabelledInput)=>{
+const LabelledInput = ({title, type, placeholder, onChange, sendReq}:LabelledInput)=>{
   return (
     <>
       <div className='flex flex-col w-full'>
       <label htmlFor={title} className='text-black font-medium'>{title[0].toUpperCase() + title.slice(1)}</label>
-      <input name={title} type={type || "text"} placeholder={placeholder} className='h-[40px] bg-white border-[1px] border-slate-300 px-2 py-1 rounded-lg' onChange={onChange} required/>
+      <input name={title} type={type || "text"} placeholder={placeholder} className='h-[40px] bg-white border-[1px] border-slate-300 px-2 py-1 rounded-lg' onChange={onChange} onKeyDown={(e) => {
+        if (e.key === "Enter")
+            sendReq();
+        }} required/>
       </div>
     </>
   )
