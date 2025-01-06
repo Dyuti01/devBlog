@@ -7,9 +7,12 @@ const Signup = () => {
   return (
     <div className='w-screen flex'>
       {/* <Auth type='signup'/> */}
-      <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] left-[40px] font-semibold text-2xl'>
+      {/* <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] left-[40px] font-semibold text-2xl'>
         dev<span className='underline'>Blogs</span>
-      </Link>
+      </Link> */}
+      <div className='fixed ml-[20px] mt-[20px] left-[40px] font-semibold text-2xl'>
+        dev<span className='underline'>Blogs</span>
+      </div>
       {/* <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] right-[40px] font-semibold'>
       See all blogs
     </Link> */}

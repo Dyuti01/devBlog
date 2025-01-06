@@ -26,7 +26,7 @@ const SigninForm = () => {
         setAuthorName(author);
         
       }
-      navigate('/allBlogs') 
+      navigate('/feed') 
     }
     catch(err){
       alert("Invalid credentials!")
