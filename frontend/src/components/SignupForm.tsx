@@ -27,7 +27,7 @@ const SignupForm = () => {
   return (
     <div className='flex flex-col justify-center items-center justify-items-center w-full sm:w-1/2 min-h-screen gap-[50px]'>
       <div className='flex flex-col w-[70%] justify-center items-center gap-[10px]'>
-        <span className='text-5xl font-bold text-center'>Create an account</span>
+        <span className='text-5xl font-bold text-center'>Create an account to post a blog</span>
         <span className='text-sm text-slate-500 text-center'>Already have an account? <Link to="/signin" className='underline'>Login</Link></span>
       </div>
     <div className='flex flex-col justify-center items-center gap-[10px] w-1/2'>

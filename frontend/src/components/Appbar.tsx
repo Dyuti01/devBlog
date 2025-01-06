@@ -30,8 +30,8 @@ const Appbar = () => {
         <Link to="/myBlogs">
           My blogs
         </Link>
-        <Link to="/allBlogs">
-          All blogs
+        <Link to="/feed">
+          Feed
         </Link>
         <button onClick={handleShowDropDown}>
           <Avatar authorName={authorName} size="large" />

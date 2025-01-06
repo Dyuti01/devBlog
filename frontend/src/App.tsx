@@ -36,7 +36,7 @@ useEffect(()=>{
           <Route path="/blog/:blogId" element={<Blog />} />
           <Route path="/myBlogs" element={<MyBlogs />} />
           <Route path="/publish" element={<WriteBlog/>}></Route>
-          <Route path="/allBlogs" element={<AllBlogs />} />
+          <Route path="/feed" element={<AllBlogs />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
         </Routes>

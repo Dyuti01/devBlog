@@ -10,9 +10,9 @@ const Signin = () => {
       <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] left-[40px] font-semibold text-2xl'>
         dev<span className='underline'>Blogs</span>
       </Link>
-      <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] right-[40px] font-semibold'>
+      {/* <Link to="/allBlogs" className='fixed ml-[20px] mt-[20px] right-[40px] font-semibold'>
       See all blogs
-    </Link>
+    </Link> */}
       <SigninForm/>
       <Quote />
     </div>
