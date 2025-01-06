@@ -17,7 +17,7 @@ const Blog = () => {
   return (
     <>
     <Appbar/>
-    <div className='flex justify-center min-h-screen w-full pt-32 relative top-0'>
+    <div className='flex justify-center min-h-screen w-full pt-32 relative top-0 bg-gray-100'>
       <div className='flex justify-center w-[80%]'>
         <div className='flex flex-col w-[50%] gap-[10px]'>
           <div className='flex flex-col gap-2'>
