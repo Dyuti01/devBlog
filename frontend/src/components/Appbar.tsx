@@ -21,7 +21,7 @@ const Appbar = () => {
     navigate("/signin")
   }
   return (
-    <div className='fixed top-0 z-10 h-[70px] flex items-center justify-between px-10 border-b w-full bg-white shadow-lg'>
+    <div className='fixed top-0 z-10 h-[70px] flex items-center justify-between px-10 border-b w-full bg-white'>
       <div className='font-semibold text-xl'>
       dev<span className='underline'>Blogs</span>
       </div>

@@ -26,7 +26,7 @@ const AllBlogs = () => {
     <>
       <Appbar />
       {loading && <Shimmer/>}
-      <div className='min-h-screen w-full flex flex-col items-center mt-[140px]'>
+      <div className='min-h-screen w-full flex flex-col items-center mt-[70px] bg-gray-100'>
         {!loading && blogs.map((b: BlogParam) => {
           return (
             <BlogCard key={b.id} blogId={b.id} authorName={b.author.firstName + " " + b.author.lastName} content={b.content} publishedDate={b.createdAt} title={b.title} />

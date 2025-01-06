@@ -47,7 +47,7 @@ const MyBlogs = () => {
         <>
       <Appbar />
       {loading && <Shimmer />}
-        <div className='min-h-screen w-full flex flex-col items-center mt-[140px]'>
+        <div className='min-h-screen w-full flex flex-col items-center mt-[70px] bg-gray-100'>
           <span className='text-3xl font-semibold'>You have no posts.</span>
           <Link to={"/publish"} className='underline'>Create post.</Link>
         </div>
