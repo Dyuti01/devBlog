@@ -36,7 +36,7 @@ const AllBlogs = () => {
          navigate("/unauthorized")
        })
     }, [])
-  const { blogs, loading } = UseAllBlogs();
+  const { blogs, loading } = UseAllBlogs(setIsLoggedInUser);
 
   return (
     <>

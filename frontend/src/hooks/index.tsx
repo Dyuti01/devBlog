@@ -36,13 +36,16 @@ export const UseBlog = ({blogId}:{blogId:string}) => {
   return {loading, blog}
 }
 
-export const UseAllBlogs = () => {
+export const UseAllBlogs = ({setIsLoggedInUser}:any) => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs]:any = useState([]);
   useEffect(()=>{
     axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {withCredentials:true}).then((res)=>{
       setBlogs(res.data);
       setLoading(false);
+    }).catch((error)=>{
+      setIsLoggedInUser(false);
+      return error.message;
     })
   }, [])
 
