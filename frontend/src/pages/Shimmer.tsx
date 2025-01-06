@@ -21,7 +21,7 @@ export default Shimmer
 
 const SkeletonBlog = () => {
   return (
-    <div className='blogCard flex flex-col w-1/2 min-h-[50px] pt-[20px] px-5 rounded-lg gap-[8px] border-b-[2px] pb-[20px]'>
+    <div className='blogCard flex flex-col w-1/2 min-h-[50px] pt-[20px] px-5 gap-[8px] border-b-[2px] pb-[20px]'>
       <div className='flex gap-[15px] items-center'>
         <div className={`relative inline-flex items-center justify-center h-6 w-6 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-200 animate-pulse`}>
           <span className="font-medium text-gray-400 dark:text-white">{""}</span>
