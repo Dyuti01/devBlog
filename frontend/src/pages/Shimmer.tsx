@@ -34,9 +34,9 @@ const SkeletonBlog = () => {
         </div>
 
       </div>
-      <div className="body bg-white">
+      <div className="body bg-gray-100">
         <div className="about text-2xl font-bold w-[200px] h-[4px]"></div>
-        <div className="content text-slate-500 flex flex-col gap-[5px]">
+        <div className="content text-slate-500 flex flex-col gap-[5px] bg-gray-100">
           <div className='w-[50%] h-[15px] bg-slate-200 rounded-xl animate-pulse'></div>
           <div className='w-[70%] h-[15px] bg-slate-200 rounded-xl animate-pulse'></div>
         </div>
