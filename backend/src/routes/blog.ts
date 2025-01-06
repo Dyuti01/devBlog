@@ -53,7 +53,7 @@ blogRouter.get("/myBlogs", userauth, async (c) => {
     return c.text("error: " + message);
   }
 });
-blogRouter.get("/blogs/:blogId", async (c) => {
+blogRouter.get("/blogs/:blogId", userauth, async (c) => {
   try {
     // const prisma = prismaClient(c);
     const prisma = new PrismaClient({
@@ -91,7 +91,7 @@ blogRouter.get("/blogs/:blogId", async (c) => {
   }
 });
 
-blogRouter.get("/bulk", async (c) => {
+blogRouter.get("/bulk", userauth, async (c) => {
   try {
     // const prisma = prismaClient(c);
     const prisma = new PrismaClient({

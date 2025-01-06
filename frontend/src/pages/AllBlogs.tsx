@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import BlogCard from '../components/BlogCard'
 import Appbar from '../components/Appbar'
 import { UseAllBlogs, UseBlogs } from '../hooks'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Shimmer from './Shimmer';
+import { BACKEND_URL } from '../config';
+import UserContext from '../utils/UserContext';
 
 export interface BlogParam {
   id: string;
@@ -20,6 +22,20 @@ export interface BlogParam {
 }
 
 const AllBlogs = () => {
+  const navigate = useNavigate();
+  const {isLoggedInUser, setIsLoggedInUser, setAuthorName}:any = useContext(UserContext);
+    useEffect(()=>{
+      // if(!isLoggedInUser){
+      // navigate("/unauthorized")
+      // }
+      axios.get(`${BACKEND_URL}/api/v1/blog/check`, {withCredentials:true}).then((res)=>{
+        setIsLoggedInUser(true)
+        setAuthorName(localStorage.getItem("authorName")||"")
+       }).catch((error)=>{
+         setIsLoggedInUser(false);
+         navigate("/unauthorized")
+       })
+    }, [])
   const { blogs, loading } = UseAllBlogs();
 
   return (
