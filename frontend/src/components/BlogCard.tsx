@@ -16,7 +16,7 @@ const BlogCard = ({blogId, authorName, title, content, publishedDate}: BlogCardP
   
   publishedDate = new Date(publishedDate);
   return (
-    <div className='blogCard flex flex-col w-1/2 min-h-[50px] pt-[20px] px-5 rounded-lg gap-[8px] border-b-[2px] pb-[20px]'>
+    <div className='blogCard flex flex-col w-1/2 min-h-[50px] pt-[20px] px-5 gap-[8px] border-b-[2px] pb-[20px]'>
       <Link to={`/blog/${blogId.toString()}`}>
         <div className='flex gap-[15px] items-center'>
           <Avatar authorName={authorName} size="small" />
