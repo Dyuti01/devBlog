@@ -3,7 +3,7 @@ import z from 'zod'
 export const signUpInput = z.object({
   email: z.string().email({message:"Invalid email"}),
   password: z.string().min(6, {message:"Password should be atleast 6 characters long"}),
-  firstName: z.string().min(3).optional(),
+  firstName: z.string().min(3),
   lastName: z.string().min(3)
 })
 export const signInInput = z.object({
