@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import Shimmer from './Shimmer';
 import { BACKEND_URL } from '../config';
 import UserContext from '../utils/UserContext';
+import axios from 'axios';
 
 export interface BlogParam {
   id: string;
