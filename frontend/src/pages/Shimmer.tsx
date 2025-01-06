@@ -6,7 +6,7 @@ const Shimmer = () => {
   return (
     <>
       <Appbar />
-      <div className='min-h-screen w-full flex flex-col items-center mt-[140px]'>
+      <div className='min-h-screen w-full flex flex-col items-center mt-[70px] bg-gray-100'>
         {arr.map((b) => {
           return (
             <SkeletonBlog key={b} />
