@@ -1,6 +1,6 @@
 # ✍️ Blogging App
 
-A full-stack blogging platform with a serverless backend deployed on Cloudflare Workers and a fast React frontend deployed on Vercel.
+A full-stack blogging platform with a serverless backend deployed on Cloudflare Workers and a React frontend deployed on Vercel.
 
 ---
 
