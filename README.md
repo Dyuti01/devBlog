@@ -4,6 +4,22 @@ A full-stack blogging platform with a serverless backend deployed on Cloudflare 
 
 ---
 
+## ✨ Features
+
+- Create, read, update, and delete blog posts
+- JWT-based authentication — sign up and log in securely
+- Serverless backend — scales automatically with zero cold-start overhead
+- Connection pooling via Prisma Accelerate for efficient database management
+- Fast frontend with Vite bundler, deployed on Vercel
+
+---
+
+## 🗄️ Database & Connection Pooling
+
+PostgreSQL is used as the database with **Prisma ORM**. Since Cloudflare Workers are stateless and serverless, direct database connections would be exhausted quickly. **Prisma Accelerate** handles connection pooling, ensuring the database isn't overwhelmed under load.
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Frontend
@@ -20,16 +36,6 @@ A full-stack blogging platform with a serverless backend deployed on Cloudflare 
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 ![Prisma Accelerate](https://img.shields.io/badge/Prisma_Accelerate-2D3748?style=for-the-badge&logo=prisma&logoColor=38BDF8)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
-
----
-
-## ✨ Features
-
-- Create, read, update, and delete blog posts
-- JWT-based authentication — sign up and log in securely
-- Serverless backend — scales automatically with zero cold-start overhead
-- Connection pooling via Prisma Accelerate for efficient database management
-- Fast frontend with Vite bundler, deployed on Vercel
 
 ---
 
@@ -98,11 +104,6 @@ Authentication is handled using **JSON Web Tokens (JWT)**:
 
 ---
 
-## 🗄️ Database & Connection Pooling
-
-PostgreSQL is used as the database with **Prisma ORM**. Since Cloudflare Workers are stateless and serverless, direct database connections would be exhausted quickly. **Prisma Accelerate** handles connection pooling, ensuring the database isn't overwhelmed under load.
-
----
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
