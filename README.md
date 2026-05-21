@@ -95,15 +95,6 @@ Connect your GitHub repo to [Vercel](https://vercel.com) and it auto-deploys on 
 
 ---
 
-## 🔐 Authentication
-
-Authentication is handled using **JSON Web Tokens (JWT)**:
-1. User signs up or logs in → server issues a signed JWT
-2. JWT is stored on the client and sent with every subsequent request
-3. Backend middleware validates the token on protected routes
-
----
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
